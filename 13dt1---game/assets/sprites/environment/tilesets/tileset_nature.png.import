@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6cx2ac8274w4"
-path="res://.godot/imported/attack.png-3fc100b543438697cad5dd78f64ce6d4.ctex"
+uid="uid://cphqxx8q40fyp"
+path="res://.godot/imported/tileset_nature.png-3f83543cc88f6e37a621491141a416cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/green_ninja/individual_sprites/attack.png"
-dest_files=["res://.godot/imported/attack.png-3fc100b543438697cad5dd78f64ce6d4.ctex"]
+source_file="res://assets/sprites/environment/tilesets/tileset_nature.png"
+dest_files=["res://.godot/imported/tileset_nature.png-3f83543cc88f6e37a621491141a416cb.ctex"]
 
 [params]
 

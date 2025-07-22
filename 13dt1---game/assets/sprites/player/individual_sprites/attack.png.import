@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8annn5um26vb"
-path="res://.godot/imported/walk.png-bd247b9459435b40229c86ef646b3653.ctex"
+uid="uid://b6cx2ac8274w4"
+path="res://.godot/imported/attack.png-fce364b13bf432211812e622a148ac93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/green_ninja/individual_sprites/walk.png"
-dest_files=["res://.godot/imported/walk.png-bd247b9459435b40229c86ef646b3653.ctex"]
+source_file="res://assets/sprites/player/individual_sprites/attack.png"
+dest_files=["res://.godot/imported/attack.png-fce364b13bf432211812e622a148ac93.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cphqxx8q40fyp"
-path="res://.godot/imported/tileset_nature.png-531f999db8b23b7e46327ff4c04f3a3a.ctex"
+uid="uid://dl7aakgumokqv"
+path="res://.godot/imported/skill_1.png-5aac82512fa6c8801412725b467a9806.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/environment/tilesets/tileset_nature.png"
-dest_files=["res://.godot/imported/tileset_nature.png-531f999db8b23b7e46327ff4c04f3a3a.ctex"]
+source_file="res://assets/sprites/player/individual_sprites/skill_1.png"
+dest_files=["res://.godot/imported/skill_1.png-5aac82512fa6c8801412725b467a9806.ctex"]
 
 [params]
 

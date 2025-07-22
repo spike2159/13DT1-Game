@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yb0srx7upgoq"
-path="res://.godot/imported/sprite_sheet.png-f68dd828b4ec09c1dae492aad3613745.ctex"
+uid="uid://thbbpcbkiphc"
+path="res://.godot/imported/skill_2.png-b8052633ffd7a52a5a9608c998e22a33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/green_ninja/sprite_sheet.png"
-dest_files=["res://.godot/imported/sprite_sheet.png-f68dd828b4ec09c1dae492aad3613745.ctex"]
+source_file="res://assets/sprites/player/individual_sprites/skill_2.png"
+dest_files=["res://.godot/imported/skill_2.png-b8052633ffd7a52a5a9608c998e22a33.ctex"]
 
 [params]
 

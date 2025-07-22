@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n37vyw4ppk2w"
-path="res://.godot/imported/tileset_water.png-59aa91fcbe912035733076b41e73290c.ctex"
+uid="uid://mwrmlpglklb4"
+path="res://.godot/imported/idle.png-fe6c25c1563106762567c1ce9849d2cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/environment/tilesets/tileset_water.png"
-dest_files=["res://.godot/imported/tileset_water.png-59aa91fcbe912035733076b41e73290c.ctex"]
+source_file="res://assets/sprites/player/individual_sprites/idle.png"
+dest_files=["res://.godot/imported/idle.png-fe6c25c1563106762567c1ce9849d2cc.ctex"]
 
 [params]
 

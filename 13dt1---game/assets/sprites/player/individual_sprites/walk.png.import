@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl7aakgumokqv"
-path="res://.godot/imported/skill_1.png-6f1760765c4ccdd5b863f3b5c3beb4da.ctex"
+uid="uid://c8annn5um26vb"
+path="res://.godot/imported/walk.png-041cbe647ab51e556b6617a7c9bdd2be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/green_ninja/individual_sprites/skill_1.png"
-dest_files=["res://.godot/imported/skill_1.png-6f1760765c4ccdd5b863f3b5c3beb4da.ctex"]
+source_file="res://assets/sprites/player/individual_sprites/walk.png"
+dest_files=["res://.godot/imported/walk.png-041cbe647ab51e556b6617a7c9bdd2be.ctex"]
 
 [params]
 

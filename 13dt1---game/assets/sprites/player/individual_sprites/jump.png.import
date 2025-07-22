@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mwrmlpglklb4"
-path="res://.godot/imported/idle.png-f823b6f0db0a0332a419216de7d40111.ctex"
+uid="uid://bn0p88p2pj30h"
+path="res://.godot/imported/jump.png-6e5c53ba7fd0bb865dd8af92bcf6be0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/green_ninja/individual_sprites/idle.png"
-dest_files=["res://.godot/imported/idle.png-f823b6f0db0a0332a419216de7d40111.ctex"]
+source_file="res://assets/sprites/player/individual_sprites/jump.png"
+dest_files=["res://.godot/imported/jump.png-6e5c53ba7fd0bb865dd8af92bcf6be0c.ctex"]
 
 [params]
 
