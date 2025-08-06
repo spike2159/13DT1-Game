@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0ioqiycw3ha8"
-path="res://.godot/imported/tileset_floor.png-6be4323f181f58fb06b78c34096b0b3a.ctex"
+uid="uid://dre5maby0y41h"
+path="res://.godot/imported/energy_bar_fill.png-7a2341b8263c7060e8d5d28de7461320.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/environment/tilesets/tileset_floor.png"
-dest_files=["res://.godot/imported/tileset_floor.png-6be4323f181f58fb06b78c34096b0b3a.ctex"]
+source_file="res://assets/ui/sprites/energy_bar_fill.png"
+dest_files=["res://.godot/imported/energy_bar_fill.png-7a2341b8263c7060e8d5d28de7461320.ctex"]
 
 [params]
 
