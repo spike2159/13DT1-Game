@@ -186,7 +186,7 @@ libraries = {
 }
 autoplay = "idle_down"
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="." groups=["player_hurtbox"]]
 collision_layer = 4
 collision_mask = 320
 
