@@ -1,17 +1,21 @@
 extends CharacterBody2D
 
+signal hp_changed(new_hp: int)
+
 @export var speed : float = 200.0
 @export var animation : AnimationPlayer
 
-# Sets varibles to default vaules before they are changed in the code. 
+# Sets variables to default vaules before they are changed in the code. 
 var last_direction : String = "down"
 var axis : String = "none"
+var max_hp : int = 12
+var current_hp : int = max_hp
 
 func _physics_process(delta: float) -> void:
 	# Sets the movement direction to no movement. 
-	var direction = Vector2.ZERO
+	var direction := Vector2.ZERO
 	
-	# Updates direction based on player inputs..  
+	# Updates direction and animation direction based on player inputs.  
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 		if axis == "horizontal":
@@ -37,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	elif abs(direction.x) == 0 and abs(direction.y) > 0:
 		axis = "vertical"
 	
-	# If direction is not zero, normalize it for consistent movement speed and set velocity.
+	# Normalise non-zero direction for consistent speed and set velocity.
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
 		velocity = direction * speed
@@ -57,3 +61,13 @@ func update_animation() -> void:
 		animation.play("idle_" + last_direction)
 	else:
 		animation.play("move_" + last_direction)
+
+# Decreases HP by an amount, clamps it within a valid range, then emits hp_changed.
+func take_damage(amount: int) -> void:
+	current_hp = max(current_hp - amount, 0)
+	emit_signal("hp_changed", current_hp)
+
+# Increases HP by an amount, clamps it within a valid range, then emits hp_changed.
+func heal(amount: int) -> void:
+	current_hp = min(current_hp + amount, max_hp)
+	emit_signal("hp_changed", current_hp)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdkdko3j6gv1y"]
+
+[ext_resource type="Script" uid="uid://c3dchn42vjj6j" path="res://scripts/ui/heart.gd" id="2_gwnj5"]
+[ext_resource type="Texture2D" uid="uid://dq44d5gagr5u2" path="res://assets/ui/sprites/hearts_spritesheet.png" id="2_rlach"]
+
+[node name="Heart" type="TextureRect"]
+texture_filter = 1
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("2_gwnj5")
+heart_sprites = ExtResource("2_rlach")
+frame_size = Vector2i(16, 16)
