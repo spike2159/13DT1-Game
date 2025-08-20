@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal hp_changed(new_hp: int)
+signal energy_changed(new_energy: int)
 
 @export var speed : float = 200.0
 @export var animation : AnimationPlayer
@@ -11,6 +12,13 @@ var axis : String = "none"
 var max_hp : int = 12
 var current_hp : int = max_hp
 var is_alive : bool = true
+var max_energy : int = 4
+var current_energy : int = max_energy
+
+# Emits signals for inital HP and energy to synchronise the HUD on scene start. 
+func _ready() -> void:
+	emit_signal("hp_changed", current_hp)
+	emit_signal("energy_changed", current_energy)
 
 func _physics_process(delta: float) -> void:
 	# Sets the movement direction to no movement. 
@@ -84,3 +92,16 @@ func heal(amount: int) -> void:
 func die() -> void:
 	await animation.animation_finished
 	get_tree().reload_current_scene()
+
+# Comsumes energy if enough is available, emits energy_changed, and returns if it suceeded. 
+func use_energy(amount: int) -> bool:
+	if current_energy >= amount:
+		current_energy -= amount
+		emit_signal("energy_changed", current_energy)
+		return true
+	return false
+
+# Restores a specific amount of energy, clamps it within a valid range, then emits energy_changed.
+func restore_energy(amount: int) -> void:
+	current_energy = min(current_energy + amount, max_energy)
+	emit_signal("energy_changed", current_energy)

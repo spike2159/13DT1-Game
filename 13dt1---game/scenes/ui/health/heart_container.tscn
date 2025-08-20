@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://di4vf70yv8te0"]
 
-[ext_resource type="PackedScene" uid="uid://bdkdko3j6gv1y" path="res://scenes/ui/heart.tscn" id="1_2dtid"]
-[ext_resource type="Script" uid="uid://bs3rwyo5gc846" path="res://scripts/ui/heart_container.gd" id="1_r5akr"]
+[ext_resource type="PackedScene" uid="uid://bdkdko3j6gv1y" path="res://scenes/ui/health/heart.tscn" id="1_2dtid"]
+[ext_resource type="Script" uid="uid://bs3rwyo5gc846" path="res://scripts/ui/health/heart_container.gd" id="1_r5akr"]
 
 [node name="HeartContainer" type="HBoxContainer"]
 offset_right = 56.0
