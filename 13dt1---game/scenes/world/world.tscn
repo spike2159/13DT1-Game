@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://csntl5kr5hgb6"]
+[gd_scene load_steps=12 format=4 uid="uid://csntl5kr5hgb6"]
 
 [ext_resource type="Texture2D" uid="uid://c0ioqiycw3ha8" path="res://assets/environment/tilesets/tileset_floor.png" id="1_1fp7r"]
 [ext_resource type="Texture2D" uid="uid://cphqxx8q40fyp" path="res://assets/environment/tilesets/tileset_nature.png" id="2_6m72w"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d3pamtrewvuh0" path="res://scenes/ui/hud.tscn" id="4_6m72w"]
 [ext_resource type="PackedScene" uid="uid://km6w24cmktuu" path="res://scenes/testing/testing_hurt_square.tscn" id="5_v5dby"]
 [ext_resource type="PackedScene" uid="uid://e8mabbpfqaj8" path="res://scenes/testing/testing_heal_square.tscn" id="6_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://cwk7s0o0mdobk" path="res://scenes/testing/testing_drain_energy_square.tscn" id="7_j2gmx"]
+[ext_resource type="PackedScene" uid="uid://c4lgaw7rqljcd" path="res://scenes/testing/testing_restore_energy_square.tscn" id="8_1yooq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwgxs"]
 texture = ExtResource("1_1fp7r")
@@ -896,4 +898,10 @@ position = Vector2(576, 384)
 position = Vector2(480, 160)
 
 [node name="TestingHealSquare" parent="." instance=ExtResource("6_t5ptc")]
-position = Vector2(576, 160)
+position = Vector2(544, 160)
+
+[node name="TestingDrainEnergySquare" parent="." instance=ExtResource("7_j2gmx")]
+position = Vector2(608, 160)
+
+[node name="TestingRestoreEnergySquare" parent="." instance=ExtResource("8_1yooq")]
+position = Vector2(672, 160)
