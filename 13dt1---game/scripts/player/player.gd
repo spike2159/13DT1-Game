@@ -14,6 +14,7 @@ var current_hp : int = max_hp
 var is_alive : bool = true
 var max_energy : int = 4
 var current_energy : int = max_energy
+var is_attacking : bool = false
 
 # Emits signals for inital HP and energy to synchronise the HUD on scene start. 
 func _ready() -> void:
@@ -51,12 +52,16 @@ func _physics_process(delta: float) -> void:
 		axis = "vertical"
 	
 	# Normalise non-zero direction for consistent speed and set velocity.
-	if direction != Vector2.ZERO and is_alive:
+	if direction != Vector2.ZERO and is_alive and not is_attacking:
 		direction = direction.normalized()
 		velocity = direction * speed
 	# If no direction is set, stop movement.
 	else:
 		velocity = Vector2.ZERO
+	
+	# Runs the attack function if the player presses the attack button.
+	if Input.is_action_just_pressed("sword_attack") and not is_attacking and is_alive:
+		attack()
 	
 	# Runs the update animation function. 
 	update_animation()
@@ -68,7 +73,10 @@ func _physics_process(delta: float) -> void:
 func update_animation() -> void:
 	# Checks if the player has more than 0 remaining health to run the correcrt animations.
 	if is_alive:
-		if velocity == Vector2.ZERO:
+		# Checks if the player is currently attacking or moving, then runs animations if required.
+		if is_attacking:
+			return
+		elif velocity == Vector2.ZERO:
 			animation.play("idle_" + last_direction)
 		else:
 			animation.play("move_" + last_direction)
@@ -105,3 +113,10 @@ func use_energy(amount: int) -> bool:
 func restore_energy(amount: int) -> void:
 	current_energy = min(current_energy + amount, max_energy)
 	emit_signal("energy_changed", current_energy)
+
+# Sets is_attacking to true while attacking, plays attack animations, and waits until it finishes. 
+func attack() -> void:
+	is_attacking = true
+	animation.play("attack_" + last_direction)
+	await animation.animation_finished
+	is_attacking = false
