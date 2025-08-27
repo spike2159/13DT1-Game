@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 # Variables for nodes are set in the inspector.
-@export var player : CharacterBody2D
-@export var heart_container : HBoxContainer
-@export var energy_bar : TextureProgressBar
+@export var player: CharacterBody2D
+@export var heart_container: HBoxContainer
+@export var energy_bar: TextureProgressBar
 
 # On load, connect the player signals to their respective functions.
 func _ready() -> void:

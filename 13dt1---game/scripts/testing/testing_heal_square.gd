@@ -1,7 +1,7 @@
 extends Area2D
 
 # Amount of HP healed by the heal_square.
-@export var heal_amount : int = 1
+@export var heal_amount: int = 1
 
 # Heals the player when the hurtbox area collides.
 func _on_area_entered(area: Area2D) -> void:

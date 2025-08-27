@@ -1,7 +1,7 @@
 extends Area2D
 
 # Amount of energy drained by the square.
-@export var energy_drained_amount : int = 1
+@export var energy_drained_amount: int = 1
 
 # Drains energy to the player when the hurtbox area collides. 
 func _on_area_entered(area: Area2D) -> void:

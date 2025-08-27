@@ -1,31 +1,36 @@
 extends CharacterBody2D
 
+# Signals for HUD updates. 
 signal hp_changed(new_hp: int)
 signal energy_changed(new_energy: int)
 
-@export var speed : float = 200.0
-@export var animation : AnimationPlayer
+# Player properties.
+@export var speed: float = 200.0
+@export var animation: AnimationPlayer
 
-# Sets variables to default vaules before they are changed in the code. 
-var last_direction : String = "down"
-var axis : String = "none"
-var max_hp : int = 12
-var current_hp : int = max_hp
-var is_alive : bool = true
-var max_energy : int = 4
-var current_energy : int = max_energy
-var is_attacking : bool = false
+# Default values for variables. 
+var last_direction: String = "down"
+var axis: String = "none"
+var max_hp: int = 12
+var current_hp: int = max_hp
+var is_alive: bool = true
+var max_energy: int = 4
+var current_energy: int = max_energy
+var is_attacking: bool = false
 
-# Emits signals for inital HP and energy to synchronise the HUD on scene start. 
+# Fireball skill object used by the player.
+var fireball_skill: Skill = preload("res://scripts/skills/fireball/fireball_skill.gd").new()
+
+# Sync HUD with current HP and energy when the scene starts. 
 func _ready() -> void:
 	emit_signal("hp_changed", current_hp)
 	emit_signal("energy_changed", current_energy)
 
 func _physics_process(delta: float) -> void:
-	# Sets the movement direction to no movement. 
-	var direction := Vector2.ZERO
+	# Reset movement vector. 
+	var direction:= Vector2.ZERO
 	
-	# Updates direction and animation direction based on player inputs.  
+	# Update direction based on input.  
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 		if axis == "horizontal":
@@ -43,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		if axis == "vertical":
 			last_direction = "down"
 	
-	# Prioitises an axis animation depending on the direction last traveled.
+	# Determine primary axis for animations.
 	if direction == Vector2.ZERO:
 		axis = "none"
 	elif abs(direction.x) > 0 and abs(direction.y) == 0:
@@ -51,29 +56,35 @@ func _physics_process(delta: float) -> void:
 	elif abs(direction.x) == 0 and abs(direction.y) > 0:
 		axis = "vertical"
 	
-	# Normalise non-zero direction for consistent speed and set velocity.
+	# Normalise direction and set velocity if moving for consistent speed.
 	if direction != Vector2.ZERO and is_alive and not is_attacking:
 		direction = direction.normalized()
 		velocity = direction * speed
-	# If no direction is set, stop movement.
 	else:
 		velocity = Vector2.ZERO
 	
-	# Runs the attack function if the player presses the attack button.
+	# Handle sword attack.
 	if Input.is_action_just_pressed("sword_attack") and not is_attacking and is_alive:
 		attack()
 	
-	# Runs the update animation function. 
+	# Handle fireball skill.
+	if Input.is_action_just_pressed("cast_fireball") and not is_attacking and is_alive:
+		if not fireball_skill.on_cooldown and use_energy(fireball_skill.energy_cost):
+			var mouse_position: Vector2 = get_global_mouse_position()
+			fireball_skill.use_skill(self, mouse_position)
+			fireball_skill.start_cooldown(self)
+	
+	# Update animation. 
 	update_animation()
 	
-	# Moves the character based on their velocity. 
+	# Moves the player. 
 	move_and_slide()
 
-# Updates animations based on player inputs and if they are alive.  
+# Update animation based on player input and state.  
 func update_animation() -> void:
-	# Checks if the player has more than 0 remaining health to run the correcrt animations.
+	# Play animations only if player is alive.
 	if is_alive:
-		# Checks if the player is currently attacking or moving, then runs animations if required.
+		# Skip animation if attacking, otherwise update movement/idle.
 		if is_attacking:
 			return
 		elif velocity == Vector2.ZERO:
@@ -83,7 +94,7 @@ func update_animation() -> void:
 	else:
 		animation.play("death")
 
-# Decreases HP by an amount, clamps it within a valid range, then emits hp_changed.
+# Take damage and update HUD.
 func take_damage(amount: int) -> void:
 	current_hp = max(current_hp - amount, 0)
 	if current_hp == 0:
@@ -91,17 +102,17 @@ func take_damage(amount: int) -> void:
 		die()
 	emit_signal("hp_changed", current_hp)
 
-# Increases HP by an amount, clamps it within a valid range, then emits hp_changed.
+# Heal player and update HUD. 
 func heal(amount: int) -> void:
 	current_hp = min(current_hp + amount, max_hp)
 	emit_signal("hp_changed", current_hp)
 
-# Waits for the death animation to finish, then reloads the current scene. 
+# Handle death animation and reload scene. 
 func die() -> void:
 	await animation.animation_finished
 	get_tree().reload_current_scene()
 
-# Comsumes energy if enough is available, emits energy_changed, and returns if it suceeded. 
+# Use energy if enough is available. 
 func use_energy(amount: int) -> bool:
 	if current_energy >= amount:
 		current_energy -= amount
@@ -109,12 +120,12 @@ func use_energy(amount: int) -> bool:
 		return true
 	return false
 
-# Restores a specific amount of energy, clamps it within a valid range, then emits energy_changed.
+# Restore energy and update HUD.
 func restore_energy(amount: int) -> void:
 	current_energy = min(current_energy + amount, max_energy)
 	emit_signal("energy_changed", current_energy)
 
-# Sets is_attacking to true while attacking, plays attack animations, and waits until it finishes. 
+# Sets is_attacking states, plays attack animations, and waits until it finishes. 
 func attack() -> void:
 	is_attacking = true
 	animation.play("attack_" + last_direction)

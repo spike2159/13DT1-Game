@@ -1,8 +1,8 @@
 extends TextureProgressBar
 
 # Energy varibles for the player's current and maximum. 
-@export var max_energy : int = 4
-@export var current_energy : int = max_energy
+@export var max_energy: int = 4
+@export var current_energy: int = max_energy
 
 # Initialise energy bar UI to match current energy on scene load. 
 func _ready() -> void:
