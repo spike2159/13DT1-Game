@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://k3bwdhe5nhbs"]
+
+[ext_resource type="Script" uid="uid://2vktt5wxfmfm" path="res://scripts/skills/heal/heal_effect.gd" id="1_2d7j4"]
+[ext_resource type="Texture2D" uid="uid://1b8yfpyqtjil" path="res://assets/sprites/skills/heal/heal_particles.png" id="2_a6vus"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1pnu"]
+atlas = ExtResource("2_a6vus")
+region = Rect2(0, 0, 53, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhrkp"]
+atlas = ExtResource("2_a6vus")
+region = Rect2(53, 0, 53, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nmcs"]
+atlas = ExtResource("2_a6vus")
+region = Rect2(106, 0, 53, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4jky"]
+atlas = ExtResource("2_a6vus")
+region = Rect2(159, 0, 53, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udmrx"]
+atlas = ExtResource("2_a6vus")
+region = Rect2(212, 0, 53, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dptys"]
+atlas = ExtResource("2_a6vus")
+region = Rect2(265, 0, 53, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i21l0"]
+atlas = ExtResource("2_a6vus")
+region = Rect2(318, 0, 53, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y1kd"]
+atlas = ExtResource("2_a6vus")
+region = Rect2(371, 0, 53, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_17uo3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1pnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhrkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nmcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4jky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udmrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dptys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i21l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8y1kd")
+}],
+"loop": false,
+"name": &"heal_effect",
+"speed": 10.0
+}]
+
+[node name="HealEffect" type="Node2D" node_paths=PackedStringArray("animation")]
+script = ExtResource("1_2d7j4")
+animation = NodePath("HealEffectAnimation")
+
+[node name="HealEffectAnimation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_17uo3")
+animation = &"heal_effect"
+frame = 2
+frame_progress = 0.685524

@@ -52,7 +52,7 @@ animation = NodePath("FireballProjectileAnimation")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kfopp")
 animation = &"fireball_spin"
-frame_progress = 0.53626
+frame_progress = 0.581157
 
 [node name="FireballProjectileCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_whwq1")

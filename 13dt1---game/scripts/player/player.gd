@@ -18,15 +18,16 @@ var max_energy: int = 4
 var current_energy: int = max_energy
 var is_attacking: bool = false
 
-# Fireball skill object used by the player.
+# Skill objects used by the player.
 var fireball_skill: Skill = preload("res://scripts/skills/fireball/fireball_skill.gd").new()
+var heal_skill: Skill = preload("res://scripts/skills/heal/heal_skill.gd").new()
 
 # Sync HUD with current HP and energy when the scene starts. 
 func _ready() -> void:
 	emit_signal("hp_changed", current_hp)
 	emit_signal("energy_changed", current_energy)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Reset movement vector. 
 	var direction:= Vector2.ZERO
 	
@@ -73,6 +74,12 @@ func _physics_process(delta: float) -> void:
 			var mouse_position: Vector2 = get_global_mouse_position()
 			fireball_skill.use_skill(self, mouse_position)
 			fireball_skill.start_cooldown(self)
+	
+	# Handle heal skill.
+	if Input.is_action_just_pressed("cast_heal") and not is_attacking and is_alive:
+		if not heal_skill.on_cooldown and use_energy(heal_skill.energy_cost):
+			heal_skill.use_skill(self)
+			heal_skill.start_cooldown(self)
 	
 	# Update animation. 
 	update_animation()
