@@ -6,15 +6,33 @@
 
 [node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("heart_container", "energy_bar")]
 script = ExtResource("1_hqnrr")
-heart_container = NodePath("HeartContainer")
-energy_bar = NodePath("EnergyBar")
+heart_container = NodePath("HeartContainerPadding/HeartContainer")
+energy_bar = NodePath("EnergyBarPadding/EnergyBar")
 
-[node name="HeartContainer" parent="." instance=ExtResource("1_0mwgc")]
+[node name="HeartContainerPadding" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 3
 
-[node name="EnergyBar" parent="." instance=ExtResource("3_bo48s")]
+[node name="HeartContainer" parent="HeartContainerPadding" instance=ExtResource("1_0mwgc")]
+layout_mode = 2
+
+[node name="EnergyBarPadding" type="MarginContainer" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -56.0
-offset_bottom = 0.0
+offset_top = -152.0
+offset_right = 54.0
+offset_bottom = -76.0
 grow_vertical = 0
+scale = Vector2(2, 2)
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="EnergyBar" parent="EnergyBarPadding" instance=ExtResource("3_bo48s")]
+layout_mode = 2
