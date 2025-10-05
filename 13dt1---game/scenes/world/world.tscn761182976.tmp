@@ -1207,5 +1207,5 @@ tile_set = SubResource("TileSet_4wyf3")
 position = Vector2(112, 112)
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_t5ptc")]
-area_size = Vector2(512, 288)
+screen_size = Vector2(512, 288)
 player = NodePath("../Player")
