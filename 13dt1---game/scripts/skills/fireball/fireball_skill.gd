@@ -5,10 +5,13 @@ extends Skill
 @export var fireball_speed: float = 300.0
 @export var fireball_duration: float = 2.5
 
+const DEFAULT_ENERGY_COST: int = 1
+const DEFAULT_COOLDOWN: float = 3.0
+
 # Sets the values for the skill class varibles.
 func _init() -> void:
-	energy_cost = 1
-	cooldown = 3
+	energy_cost = DEFAULT_ENERGY_COST
+	cooldown = DEFAULT_COOLDOWN
 
 # Runs when the player uses the fireball skill.
 func use_skill(caster: CharacterBody2D, mouse_position: Vector2) -> void:

@@ -9,14 +9,22 @@ signal energy_changed(new_energy: int)
 @export var animation: AnimationPlayer
 
 # Default values for variables. 
-var last_direction: String = "down"
-var axis: String = "none"
+var facing_direction: String = DIRECTION_DOWN
+var axis: String = NO_AXIS
 var max_hp: int = 12
 var current_hp: int = max_hp
 var is_alive: bool = true
 var max_energy: int = 4
 var current_energy: int = max_energy
 var is_attacking: bool = false
+
+const HORIZONTAL_AXIS: String = "horizontal"
+const VERTICAL_AXIS: String = "vertical"
+const NO_AXIS: String = "none"
+const DIRECTION_RIGHT: String = "right"
+const DIRECTION_LEFT: String = "left"
+const DIRECTION_UP: String = "up"
+const DIRECTION_DOWN: String = "down"
 
 # Skill objects used by the player.
 var fireball_skill: Skill = preload("res://scripts/skills/fireball/fireball_skill.gd").new()
@@ -34,28 +42,28 @@ func _physics_process(_delta: float) -> void:
 	# Update direction based on input.  
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
-		if axis == "horizontal":
-			last_direction = "right"
+		if axis == HORIZONTAL_AXIS:
+			facing_direction = DIRECTION_RIGHT
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
-		if axis == "horizontal":
-			last_direction = "left"
+		if axis == HORIZONTAL_AXIS:
+			facing_direction = DIRECTION_LEFT
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
-		if axis == "vertical":
-			last_direction = "up"
+		if axis == VERTICAL_AXIS:
+			facing_direction = DIRECTION_UP
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
-		if axis == "vertical":
-			last_direction = "down"
+		if axis == VERTICAL_AXIS:
+			facing_direction = DIRECTION_DOWN
 	
 	# Determine primary axis for animations.
 	if direction == Vector2.ZERO:
-		axis = "none"
+		axis = NO_AXIS
 	elif abs(direction.x) > 0 and abs(direction.y) == 0:
-		axis = "horizontal"
+		axis = HORIZONTAL_AXIS
 	elif abs(direction.x) == 0 and abs(direction.y) > 0:
-		axis = "vertical"
+		axis = VERTICAL_AXIS
 	
 	# Normalise direction and set velocity if moving for consistent speed.
 	if direction != Vector2.ZERO and is_alive and not is_attacking:
@@ -95,16 +103,16 @@ func update_animation() -> void:
 		if is_attacking:
 			return
 		elif velocity == Vector2.ZERO:
-			animation.play("idle_" + last_direction)
+			animation.play("idle_" + facing_direction)
 		else:
-			animation.play("move_" + last_direction)
+			animation.play("move_" + facing_direction)
 	else:
 		animation.play("death")
 
 # Take damage and update HUD.
 func take_damage(amount: int) -> void:
 	current_hp = max(current_hp - amount, 0)
-	if current_hp == 0:
+	if current_hp <= 0:
 		is_alive = false
 		die()
 	emit_signal("hp_changed", current_hp)
@@ -135,6 +143,6 @@ func restore_energy(amount: int) -> void:
 # Sets is_attacking states, plays attack animations, and waits until it finishes. 
 func attack() -> void:
 	is_attacking = true
-	animation.play("attack_" + last_direction)
+	animation.play("attack_" + facing_direction)
 	await animation.animation_finished
 	is_attacking = false
