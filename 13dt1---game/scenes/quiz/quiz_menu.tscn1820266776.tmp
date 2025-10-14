@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwv8c1y34ne4q"]
+
+[ext_resource type="Script" uid="uid://2gsggg270sge" path="res://scripts/quiz/quiz_menu.gd" id="1_pgpyq"]
+[ext_resource type="Texture2D" uid="uid://cwodtchkm27oc" path="res://assets/ui/sprites/ui_panel.png" id="2_m6hso"]
+[ext_resource type="Theme" uid="uid://ct6emev5yl80r" path="res://resoruces/themes/main_theme.tres" id="3_hg2tf"]
+[ext_resource type="PackedScene" uid="uid://b0lx7wupbk0n2" path="res://scenes/quiz/quiz_panel.tscn" id="4_m6hso"]
+
+[node name="QuizMenu" type="Control" node_paths=PackedStringArray("close_quiz_menu", "quiz_panel", "complex_quiz_button", "differentiation_quiz_button", "Integration_quiz_button")]
+process_mode = 3
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pgpyq")
+close_quiz_menu = NodePath("SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer/CloseQuizMenu")
+quiz_panel = NodePath("QuizPanel")
+complex_quiz_button = NodePath("SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer/ComplexQuizButton")
+differentiation_quiz_button = NodePath("SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer/DifferentiationQuizButton")
+Integration_quiz_button = NodePath("SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer/IntegrationQuizButton")
+
+[node name="BackgroundTint" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 0.784314)
+
+[node name="SelectQuizBackgroundTexture" type="NinePatchRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -183.0
+offset_right = 128.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m6hso")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="SelectQuizInnerTexture" type="Panel" parent="SelectQuizBackgroundTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SelectQuizContainer" type="VBoxContainer" parent="SelectQuizBackgroundTexture/SelectQuizInnerTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="SelectQuizLabel" type="Label" parent="SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer"]
+layout_mode = 2
+theme = ExtResource("3_hg2tf")
+text = "Select a Quiz"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="ComplexQuizButton" type="Button" parent="SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_hg2tf")
+text = "Complex Numbers"
+
+[node name="DifferentiationQuizButton" type="Button" parent="SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_hg2tf")
+text = "Differentiation"
+
+[node name="IntegrationQuizButton" type="Button" parent="SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_hg2tf")
+text = "Integration"
+
+[node name="CloseQuizMenu" type="Button" parent="SelectQuizBackgroundTexture/SelectQuizInnerTexture/SelectQuizContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_hg2tf")
+text = "Close Menu"
+
+[node name="QuizPanel" parent="." instance=ExtResource("4_m6hso")]
+layout_mode = 1

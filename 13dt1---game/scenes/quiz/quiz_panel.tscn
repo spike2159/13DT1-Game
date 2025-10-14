@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0lx7wupbk0n2"]
+
+[ext_resource type="Texture2D" uid="uid://cwodtchkm27oc" path="res://assets/ui/sprites/ui_panel.png" id="1_1dowj"]
+[ext_resource type="Script" uid="uid://sg3134ctq76t" path="res://scripts/quiz/quiz_panel.gd" id="1_bs7af"]
+[ext_resource type="Theme" uid="uid://ct6emev5yl80r" path="res://resoruces/themes/main_theme.tres" id="2_bs7af"]
+
+[node name="QuizPanel" type="Control" node_paths=PackedStringArray("question_label", "answer_container", "answer_buttons", "feedback_container", "next_question_button", "close_quiz_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bs7af")
+question_label = NodePath("QuizBackgroundTexture/QuizInnerTexture/QuizContainer/QuestionLabel")
+answer_container = NodePath("QuizBackgroundTexture/QuizInnerTexture/QuizContainer/AnswerButtonContainer")
+answer_buttons = [NodePath("QuizBackgroundTexture/QuizInnerTexture/QuizContainer/AnswerButtonContainer/Answer1"), NodePath("QuizBackgroundTexture/QuizInnerTexture/QuizContainer/AnswerButtonContainer/Answer2"), NodePath("QuizBackgroundTexture/QuizInnerTexture/QuizContainer/AnswerButtonContainer/Answer3")]
+feedback_container = NodePath("QuizBackgroundTexture/QuizInnerTexture/QuizContainer/FeedbackContainer")
+next_question_button = NodePath("QuizBackgroundTexture/QuizInnerTexture/QuizContainer/FeedbackContainer/NextQuestion")
+close_quiz_button = NodePath("QuizBackgroundTexture/QuizInnerTexture/QuizContainer/FeedbackContainer/ExitQuiz")
+
+[node name="QuizBackgroundTexture" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -180.0
+offset_right = 432.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1dowj")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="QuizInnerTexture" type="Panel" parent="QuizBackgroundTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuizContainer" type="VBoxContainer" parent="QuizBackgroundTexture/QuizInnerTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="QuestionLabel" type="Label" parent="QuizBackgroundTexture/QuizInnerTexture/QuizContainer"]
+custom_minimum_size = Vector2(200, 180)
+layout_mode = 2
+theme = ExtResource("2_bs7af")
+text = "Question will apear here"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnswerButtonContainer" type="HBoxContainer" parent="QuizBackgroundTexture/QuizInnerTexture/QuizContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Answer1" type="Button" parent="QuizBackgroundTexture/QuizInnerTexture/QuizContainer/AnswerButtonContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_bs7af")
+text = "Answer1"
+
+[node name="Answer2" type="Button" parent="QuizBackgroundTexture/QuizInnerTexture/QuizContainer/AnswerButtonContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_bs7af")
+text = "Answer2"
+
+[node name="Answer3" type="Button" parent="QuizBackgroundTexture/QuizInnerTexture/QuizContainer/AnswerButtonContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_bs7af")
+text = "Answer3"
+
+[node name="FeedbackContainer" type="HBoxContainer" parent="QuizBackgroundTexture/QuizInnerTexture/QuizContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="NextQuestion" type="Button" parent="QuizBackgroundTexture/QuizInnerTexture/QuizContainer/FeedbackContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_bs7af")
+text = "Next Question"
+
+[node name="ExitQuiz" type="Button" parent="QuizBackgroundTexture/QuizInnerTexture/QuizContainer/FeedbackContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_bs7af")
+text = "Exit Quiz"

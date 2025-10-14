@@ -39,7 +39,7 @@ func _physics_process(_delta: float) -> void:
 	# Reset movement vector. 
 	var direction:= Vector2.ZERO
 	
-	# Update direction based on input.  
+	# Update direction based on input. 
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 		if axis == HORIZONTAL_AXIS:
@@ -95,7 +95,7 @@ func _physics_process(_delta: float) -> void:
 	# Moves the player. 
 	move_and_slide()
 
-# Update animation based on player input and state.  
+# Update animation based on player input and state.
 func update_animation() -> void:
 	# Play animations only if player is alive.
 	if is_alive:

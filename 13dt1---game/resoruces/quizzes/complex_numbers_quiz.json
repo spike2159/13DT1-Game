@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is the complex conjugate of the number 3 - 7i?",
+    "answers": ["3 + 7i", "-3 + 7i", "-3 - 7i"],
+    "correct_answer": 0
+  },
+  {
+    "question": "Find the modulus of the complex number z = 3 + 4i.",
+    "answers": ["5", "7", "25"],
+    "correct_answer": 0
+  },
+  {
+    "question": "Calculate the square of the complex number z = 1 - i.",
+    "answers": ["-2i", "-2", "2"],
+    "correct_answer": 0
+  },
+  {
+    "question": "If u = 2 + i and w = 1 - 3i, find the product uw.",
+    "answers": ["5 - 5i", "2 + 3i", "5 + 5i"],
+    "correct_answer": 0
+  },
+  {
+    "question": "Given m = 4 cis(\u03C0/3), find m\u00B3 in polar form.",
+    "answers": ["64 cis(\u03C0)", "12 cis(\u03C0)", "64 cis(\u03C0/3)"],
+    "correct_answer": 0
+  },
+  {
+    "question": "If the argument of a complex number is \u03C0/4, what is the relationship between its real and imaginary parts?",
+    "answers": ["Re(z) = Im(z)", "Re(z) = -Im(z)", "Re(z) = 2 \u00D7 Im(z)"],
+    "correct_answer": 0
+  },
+  {
+    "question": "Determine the argument of the complex number z = -i, expressed as an angle between 0 and 2\u03C0.",
+    "answers": ["3\u03C0/2", "\u03C0/2", "\u03C0"],
+    "correct_answer": 0
+  },
+  {
+    "question": "If z - 3 is a factor of a polynomial, what is one solution of the equation?",
+    "answers": ["3", "0", "-3"],
+    "correct_answer": 0
+  },
+  {
+    "question": "Given v = 4i, find the modulus and its argument.",
+    "answers": ["|z| = 4, arg(z) = \u03C0/2", "|z| = 2, arg(z) = \u03C0/2", "|z| = 2, arg(z) = 3\u03C0/2"],
+    "correct_answer": 0
+  },
+  {
+    "question": "The equation |z - 2| = 3 represents a circle in the complex plane. What are its centre and radius?",
+    "answers": ["centre = (2, 0) and radius = 3", "centre = (-2, 0) and radius = 3", "centre = (0, 2) and radius = 9"],
+    "correct_answer": 0
+  }
+]
