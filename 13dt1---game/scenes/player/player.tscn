@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://yb0srx7upgoq" path="res://assets/sprites/player/sprite_sheet.png" id="2_gmlin"]
 [ext_resource type="Texture2D" uid="uid://6dg5j6fno8jt" path="res://assets/sprites/weapons/sword_in_hand.png" id="3_gmlin"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7p2l"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmlin"]
 
 [sub_resource type="Animation" id="Animation_0owmy"]
 length = 0.001
@@ -494,15 +493,14 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvxji"]
 size = Vector2(8, 12)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation") groups=["player"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_8afob")
 animation = NodePath("Animations")
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_x7p2l")
+shape = SubResource("CircleShape2D_gmlin")
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -519,7 +517,7 @@ autoplay = "idle_down"
 [node name="HurtBox" type="Area2D" parent="." groups=["player_hurtbox"]]
 visible = false
 collision_layer = 4
-collision_mask = 320
+collision_mask = 64
 
 [node name="HurtBoxCollision" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_dovo2")
@@ -543,3 +541,5 @@ monitoring = false
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_lvxji")
 debug_color = Color(0, 0.633953, 0.434623, 0.42)
+
+[connection signal="area_entered" from="Sword/SwordHitBox" to="." method="_on_sword_hit_box_area_entered"]

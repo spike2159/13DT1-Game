@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://csntl5kr5hgb6"]
+[gd_scene load_steps=12 format=4 uid="uid://csntl5kr5hgb6"]
 
 [ext_resource type="Texture2D" uid="uid://c0ioqiycw3ha8" path="res://assets/environment/tilesets/tileset_floor.png" id="1_1fp7r"]
 [ext_resource type="Texture2D" uid="uid://cphqxx8q40fyp" path="res://assets/environment/tilesets/tileset_nature.png" id="2_6m72w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://n37vyw4ppk2w" path="res://assets/environment/tilesets/tileset_water.png" id="4_1yooq"]
 [ext_resource type="PackedScene" uid="uid://d3pamtrewvuh0" path="res://scenes/ui/hud.tscn" id="4_6m72w"]
 [ext_resource type="PackedScene" uid="uid://cjbnh0f3eucqx" path="res://scenes/camera/camera.tscn" id="6_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://d3f4je3jctxrv" path="res://scenes/enemy/slime.tscn" id="7_bq33v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwgxs"]
 texture = ExtResource("1_1fp7r")
@@ -1209,3 +1210,12 @@ position = Vector2(112, 112)
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_t5ptc")]
 area_size = Vector2(512, 288)
 player = NodePath("../Player")
+
+[node name="SlimeA" parent="." instance=ExtResource("7_bq33v")]
+position = Vector2(1392, 72)
+
+[node name="SlimeB" parent="." instance=ExtResource("7_bq33v")]
+position = Vector2(1272, 144)
+
+[node name="SlimeC" parent="." instance=ExtResource("7_bq33v")]
+position = Vector2(1400, 208)

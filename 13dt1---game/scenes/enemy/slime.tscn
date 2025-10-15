@@ -1,0 +1,179 @@
+[gd_scene load_steps=14 format=3 uid="uid://d3f4je3jctxrv"]
+
+[ext_resource type="Script" uid="uid://0fvvk2cau7ci" path="res://scripts/enemy/slime.gd" id="1_4wfld"]
+[ext_resource type="Texture2D" uid="uid://rvajxbtcgbcg" path="res://assets/sprites/enemy/slime_spritesheet.png" id="1_ves4f"]
+
+[sub_resource type="Animation" id="Animation_4wfld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ves4f"]
+resource_name = "idle_down"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wd25t"]
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 8, 12]
+}
+
+[sub_resource type="Animation" id="Animation_qgvyr"]
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 6, 10, 14]
+}
+
+[sub_resource type="Animation" id="Animation_ilpy5"]
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 7, 11, 15]
+}
+
+[sub_resource type="Animation" id="Animation_xrg7s"]
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 5, 9, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8tyiq"]
+_data = {
+&"RESET": SubResource("Animation_4wfld"),
+&"idle": SubResource("Animation_ves4f"),
+&"move_down": SubResource("Animation_wd25t"),
+&"move_left": SubResource("Animation_qgvyr"),
+&"move_right": SubResource("Animation_ilpy5"),
+&"move_up": SubResource("Animation_xrg7s")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4wfld"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ves4f"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wd25t"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgvyr"]
+radius = 16.0
+
+[node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("animation", "player_detection_area")]
+collision_layer = 16
+collision_mask = 17
+script = ExtResource("1_4wfld")
+speed = 20.0
+animation = NodePath("SlimeAnimations")
+player_detection_area = NodePath("PlayerDetectionArea")
+
+[node name="SlimeSpriteSheet" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ves4f")
+hframes = 4
+vframes = 4
+
+[node name="SlimeAnimations" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SlimeSpriteSheet")
+libraries = {
+&"": SubResource("AnimationLibrary_8tyiq")
+}
+autoplay = "idle"
+
+[node name="SlimeWorldCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4wfld")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 2
+
+[node name="PlayerDetectionCollision" type="CollisionShape2D" parent="PlayerDetectionArea"]
+shape = SubResource("CircleShape2D_ves4f")
+debug_color = Color(0.64851, 0.520617, 7.70092e-07, 0.42)
+
+[node name="SlimeHurtBox" type="Area2D" parent="." groups=["enemy_hurtbox"]]
+visible = false
+collision_layer = 32
+collision_mask = 136
+
+[node name="SlimeHurtBoxCollision" type="CollisionShape2D" parent="SlimeHurtBox"]
+shape = SubResource("CircleShape2D_wd25t")
+debug_color = Color(1, 0.145098, 0.227451, 0.419608)
+
+[node name="SlimeAttackRange" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 4
+
+[node name="SlimeAttackRangeCollision" type="CollisionShape2D" parent="SlimeAttackRange"]
+shape = SubResource("CircleShape2D_qgvyr")
+debug_color = Color(0, 0.633953, 0.434623, 0.42)
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
+[connection signal="area_entered" from="SlimeAttackRange" to="." method="_on_slime_attack_range_area_entered"]
+[connection signal="area_exited" from="SlimeAttackRange" to="." method="_on_slime_attack_range_area_exited"]

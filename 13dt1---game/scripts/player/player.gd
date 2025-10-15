@@ -17,6 +17,7 @@ var is_alive: bool = true
 var max_energy: int = 4
 var current_energy: int = max_energy
 var is_attacking: bool = false
+var sword_damage: int = 1
 
 const HORIZONTAL_AXIS: String = "horizontal"
 const VERTICAL_AXIS: String = "vertical"
@@ -25,6 +26,7 @@ const DIRECTION_RIGHT: String = "right"
 const DIRECTION_LEFT: String = "left"
 const DIRECTION_UP: String = "up"
 const DIRECTION_DOWN: String = "down"
+const WORLD_SCENE_PATH: String = "res://scenes/world/world.tscn"
 
 # Skill objects used by the player.
 var fireball_skill: Skill = preload("res://scripts/skills/fireball/fireball_skill.gd").new()
@@ -37,7 +39,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	# Reset movement vector. 
-	var direction:= Vector2.ZERO
+	var direction := Vector2.ZERO
 	
 	# Update direction based on input. 
 	if Input.is_action_pressed("move_right"):
@@ -92,7 +94,7 @@ func _physics_process(_delta: float) -> void:
 	# Update animation. 
 	update_animation()
 	
-	# Moves the player. 
+	# Moves the player and handles collisions. 
 	move_and_slide()
 
 # Update animation based on player input and state.
@@ -122,10 +124,14 @@ func heal(amount: int) -> void:
 	current_hp = min(current_hp + amount, max_hp)
 	emit_signal("hp_changed", current_hp)
 
-# Handle death animation and reload scene. 
+# Handle death sequence and safely reloads the scene. 
 func die() -> void:
+	# Cache the scene tree to avoid null errors.
+	var tree := get_tree()
+	
+	# Wait for the death animation to finish before reloading.
 	await animation.animation_finished
-	get_tree().reload_current_scene()
+	tree.change_scene_to_file(WORLD_SCENE_PATH)
 
 # Use energy if enough is available. 
 func use_energy(amount: int) -> bool:
@@ -146,3 +152,10 @@ func attack() -> void:
 	animation.play("attack_" + facing_direction)
 	await animation.animation_finished
 	is_attacking = false
+
+# Handles the sword hitting an enemy hurtbox and applies damage.
+func _on_sword_hit_box_area_entered(area: Area2D) -> void:
+	# If the collided area belongs to an enemy hurtbox, deal damage.
+	if area.is_in_group("enemy_hurtbox"):
+		var enemy: Node2D = area.get_parent()
+		enemy.take_damage(sword_damage)

@@ -24,6 +24,7 @@ window/stretch/mode="viewport"
 player_hurtbox=""
 world=""
 enemy_hurtbox=""
+player=""
 
 [input]
 
@@ -82,4 +83,3 @@ open_quiz_menu={
 2d_physics/layer_6="EnemyHurtBox"
 2d_physics/layer_7="EnemyHitBox"
 2d_physics/layer_8="Projectiles"
-2d_physics/layer_9="TestObjects"
