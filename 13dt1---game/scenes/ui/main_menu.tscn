@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cebi244nm2ldh"]
+[gd_scene load_steps=5 format=3 uid="uid://cebi244nm2ldh"]
 
 [ext_resource type="Script" uid="uid://ddjci3vgbl4m0" path="res://scripts/ui/main_menu.gd" id="1_m1kxf"]
 [ext_resource type="Texture2D" uid="uid://br4p680l667a" path="res://assets/ui/sprites/main_menu_background.png" id="1_sl1te"]
 [ext_resource type="Texture2D" uid="uid://cwodtchkm27oc" path="res://assets/ui/sprites/ui_panel.png" id="2_1g8jr"]
-[ext_resource type="PackedScene" uid="uid://csntl5kr5hgb6" path="res://scenes/world/world.tscn" id="2_x2yvf"]
 [ext_resource type="Theme" uid="uid://ct6emev5yl80r" path="res://resoruces/themes/main_theme.tres" id="3_m1kxf"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "information_button", "exit_button", "information_menu", "exit_information_button", "title", "menu_buttons", "quit_game_button")]
@@ -15,7 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m1kxf")
-game_scene = ExtResource("2_x2yvf")
 play_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/StartGameButton")
 information_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/InformationButton")
 exit_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/QuitGameButton")
@@ -312,7 +310,7 @@ text = "Controls"
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="ControlsBody" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer/HBoxContainer"]
+[node name="ControlsFunction" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer/HBoxContainer"]
 custom_minimum_size = Vector2(204, 368)
 layout_mode = 2
 theme = ExtResource("3_m1kxf")
@@ -322,12 +320,13 @@ text = "Movement
 Sword Attack
 Fireball Skill
 Heal Skill
-Calculus Quiz"
+Calculus Quiz
+Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ControlsBody2" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer/HBoxContainer"]
+[node name="ControlsKeybind" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer/HBoxContainer"]
 custom_minimum_size = Vector2(204, 368)
 layout_mode = 2
 theme = ExtResource("3_m1kxf")
@@ -337,7 +336,8 @@ text = "WASD / ←↑→↓
 Space
 E
 Q
-T"
+T
+Esc / P"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

@@ -1,16 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3pamtrewvuh0"]
+[gd_scene load_steps=7 format=3 uid="uid://d3pamtrewvuh0"]
 
 [ext_resource type="PackedScene" uid="uid://di4vf70yv8te0" path="res://scenes/ui/health/heart_container.tscn" id="1_0mwgc"]
 [ext_resource type="Script" uid="uid://cx6mw4pa4h402" path="res://scripts/ui/hud.gd" id="1_hqnrr"]
 [ext_resource type="PackedScene" uid="uid://rqs2q5rm7t1" path="res://scenes/ui/energy/energy_bar.tscn" id="3_bo48s"]
 [ext_resource type="PackedScene" uid="uid://bwv8c1y34ne4q" path="res://scenes/quiz/quiz_menu.tscn" id="4_8qguk"]
+[ext_resource type="Texture2D" uid="uid://cwodtchkm27oc" path="res://assets/ui/sprites/ui_panel.png" id="5_oj5la"]
+[ext_resource type="Theme" uid="uid://ct6emev5yl80r" path="res://resoruces/themes/main_theme.tres" id="6_gss2c"]
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("heart_container", "energy_bar", "quiz_menu")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("heart_container", "energy_bar", "quiz_menu", "pause_menu", "resume_button", "information_button", "exit_game_button", "information_menu", "exit_information_button")]
 process_mode = 3
 script = ExtResource("1_hqnrr")
 heart_container = NodePath("HeartContainerPadding/HeartContainer")
 energy_bar = NodePath("EnergyBarPadding/EnergyBar")
 quiz_menu = NodePath("QuizMenu")
+pause_menu = NodePath("PauseMenu")
+resume_button = NodePath("PauseMenu/PauseMenuOuterTexture/PauseMenuInnerTexture/PauseMenuContainer/ResumeGameButton")
+information_button = NodePath("PauseMenu/PauseMenuOuterTexture/PauseMenuInnerTexture/PauseMenuContainer/InformationButton")
+exit_game_button = NodePath("PauseMenu/PauseMenuOuterTexture/PauseMenuInnerTexture/PauseMenuContainer/ExitButton")
+information_menu = NodePath("InfoMenu")
+exit_information_button = NodePath("InfoMenu/CloseButtonOuterTexture/CloseButtonInnerTexture/CloseButton")
 
 [node name="HeartContainerPadding" type="MarginContainer" parent="."]
 texture_filter = 1
@@ -44,3 +52,331 @@ layout_mode = 2
 
 [node name="QuizMenu" parent="." instance=ExtResource("4_8qguk")]
 visible = false
+
+[node name="PauseMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTint" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 0.784314)
+
+[node name="PauseMenuOuterTexture" type="NinePatchRect" parent="PauseMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -113.5
+offset_right = 112.0
+offset_bottom = 113.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_oj5la")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="PauseMenuInnerTexture" type="Panel" parent="PauseMenu/PauseMenuOuterTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenuContainer" type="VBoxContainer" parent="PauseMenu/PauseMenuOuterTexture/PauseMenuInnerTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ResumeGameButton" type="Button" parent="PauseMenu/PauseMenuOuterTexture/PauseMenuInnerTexture/PauseMenuContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("6_gss2c")
+text = "Resume Game"
+
+[node name="InformationButton" type="Button" parent="PauseMenu/PauseMenuOuterTexture/PauseMenuInnerTexture/PauseMenuContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("6_gss2c")
+text = "Information"
+
+[node name="ExitButton" type="Button" parent="PauseMenu/PauseMenuOuterTexture/PauseMenuInnerTexture/PauseMenuContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("6_gss2c")
+text = "Return to Main Menu"
+
+[node name="InfoMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTint" type="ColorRect" parent="InfoMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 0.784314)
+
+[node name="MenuOuterTexture" type="NinePatchRect" parent="InfoMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -260.0
+offset_right = 448.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_oj5la")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="InfoMenuMargin" type="MarginContainer" parent="InfoMenu/MenuOuterTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="InfoMenuContainer" type="HBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TutorialCreditsContainer" type="VBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TutorialPanel" type="Panel" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer"]
+custom_minimum_size = Vector2(438, 214)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TutorialMargin" type="MarginContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/TutorialPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TutorialContainer" type="VBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/TutorialPanel/TutorialMargin"]
+layout_mode = 2
+
+[node name="TutorialHeader" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/TutorialPanel/TutorialMargin/TutorialContainer"]
+layout_mode = 2
+theme = ExtResource("6_gss2c")
+text = "How to Play?"
+
+[node name="TutorialBody" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/TutorialPanel/TutorialMargin/TutorialContainer"]
+custom_minimum_size = Vector2(0, 144)
+layout_mode = 2
+theme = ExtResource("6_gss2c")
+theme_override_font_sizes/font_size = 24
+text = "Adventure through the world using your abilities to overcome any obstacles in your path."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CreditsPanel" type="Panel" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer"]
+custom_minimum_size = Vector2(438, 214)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CreditsMargin" type="MarginContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/CreditsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CreditsContainer" type="VBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/CreditsPanel/CreditsMargin"]
+layout_mode = 2
+
+[node name="CreditsHeader" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/CreditsPanel/CreditsMargin/CreditsContainer"]
+layout_mode = 2
+theme = ExtResource("6_gss2c")
+text = "Credits"
+
+[node name="CreditsBody" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/CreditsPanel/CreditsMargin/CreditsContainer"]
+custom_minimum_size = Vector2(0, 144)
+layout_mode = 2
+theme = ExtResource("6_gss2c")
+theme_override_font_sizes/font_size = 24
+text = " Font: Noto Sans Math - Google
+ Assets: Ninja Adventure - Pixel-Boy"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ControlsPanel" type="Panel" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer"]
+custom_minimum_size = Vector2(438, 0)
+layout_mode = 2
+
+[node name="ControlsMargin" type="MarginContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ControlsContainer" type="VBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin"]
+layout_mode = 2
+
+[node name="ControlsHeader" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("6_gss2c")
+text = "Controls"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ControlsFunction" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(204, 368)
+layout_mode = 2
+theme = ExtResource("6_gss2c")
+theme_override_constants/line_spacing = 30
+theme_override_font_sizes/font_size = 24
+text = "Movement
+Sword Attack
+Fireball Skill
+Heal Skill
+Calculus Quiz
+Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ControlsKeybind" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(204, 368)
+layout_mode = 2
+theme = ExtResource("6_gss2c")
+theme_override_constants/line_spacing = 30
+theme_override_font_sizes/font_size = 24
+text = "WASD / ←↑→↓
+Space
+E
+Q
+T
+Esc / P"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButtonOuterTexture" type="NinePatchRect" parent="InfoMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 216.0
+offset_right = 100.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_oj5la")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="CloseButtonInnerTexture" type="Panel" parent="InfoMenu/CloseButtonOuterTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseButton" type="Button" parent="InfoMenu/CloseButtonOuterTexture/CloseButtonInnerTexture"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+offset_left = 4.5
+offset_top = 5.5
+offset_right = 179.5
+offset_bottom = 50.5
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("6_gss2c")
+text = "Close Menu
+"

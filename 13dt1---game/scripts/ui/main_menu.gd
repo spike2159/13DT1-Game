@@ -1,7 +1,7 @@
 extends Control
 
 # Variables for nodes set in the inspector.
-@export var game_scene: PackedScene
+@export var game_scene_path: String = "res://scenes/world/world.tscn"
 @export var play_button: Button
 @export var information_button: Button
 @export var exit_button: Button
@@ -22,7 +22,7 @@ func _ready() -> void:
 
 # Switch to game scene when Play button is pressed
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_packed(game_scene)
+	get_tree().change_scene_to_file(game_scene_path)
 
 
 # Show info menu and hide title and menu buttons when info button is pressed.
