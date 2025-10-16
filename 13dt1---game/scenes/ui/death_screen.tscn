@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj81yp1hrhbl7"]
+
+[ext_resource type="Texture2D" uid="uid://cwodtchkm27oc" path="res://assets/ui/sprites/ui_panel.png" id="1_njuei"]
+[ext_resource type="Script" uid="uid://ddpnxexuimi10" path="res://scripts/ui/death_screen.gd" id="1_w6at5"]
+[ext_resource type="Theme" uid="uid://ct6emev5yl80r" path="res://resoruces/themes/main_theme.tres" id="2_w6at5"]
+
+[node name="DeathScreen" type="Control" node_paths=PackedStringArray("retry_game_button", "main_menu_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w6at5")
+retry_game_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/RetryGameButton")
+main_menu_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/MainMenuButton")
+
+[node name="BackgroundTint" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="YouDiedOuterTexture" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -243.0
+offset_right = 160.0
+offset_bottom = -147.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_njuei")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="YouDiedInnerTexture" type="Panel" parent="YouDiedOuterTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YouDiedLabel" type="Label" parent="YouDiedOuterTexture/YouDiedInnerTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_w6at5")
+theme_override_font_sizes/font_size = 48
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonMenuOuterTexture" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 20.0
+offset_right = 112.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_njuei")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="ButtonMenuInnerTexture" type="Panel" parent="ButtonMenuOuterTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="ButtonMenuOuterTexture/ButtonMenuInnerTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="RetryGameButton" type="Button" parent="ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_w6at5")
+text = "Retry"
+
+[node name="MainMenuButton" type="Button" parent="ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_w6at5")
+text = "Return to Main Menu"

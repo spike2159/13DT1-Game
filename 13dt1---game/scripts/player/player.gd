@@ -26,7 +26,7 @@ const DIRECTION_RIGHT: String = "right"
 const DIRECTION_LEFT: String = "left"
 const DIRECTION_UP: String = "up"
 const DIRECTION_DOWN: String = "down"
-const WORLD_SCENE_PATH: String = "res://scenes/world/world.tscn"
+const DEATH_SCENE_PATH: String = "res://scenes/ui/death_screen.tscn"
 
 # Skill objects used by the player.
 var fireball_skill: Skill = preload("res://scripts/skills/fireball/fireball_skill.gd").new()
@@ -131,7 +131,7 @@ func die() -> void:
 	
 	# Wait for the death animation to finish before reloading.
 	await animation.animation_finished
-	tree.change_scene_to_file(WORLD_SCENE_PATH)
+	tree.change_scene_to_file(DEATH_SCENE_PATH)
 
 # Use energy if enough is available. 
 func use_energy(amount: int) -> bool:
