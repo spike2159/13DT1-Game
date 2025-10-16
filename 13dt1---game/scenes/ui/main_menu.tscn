@@ -1,0 +1,391 @@
+[gd_scene load_steps=6 format=3 uid="uid://cebi244nm2ldh"]
+
+[ext_resource type="Script" uid="uid://ddjci3vgbl4m0" path="res://scripts/ui/main_menu.gd" id="1_m1kxf"]
+[ext_resource type="Texture2D" uid="uid://br4p680l667a" path="res://assets/ui/sprites/main_menu_background.png" id="1_sl1te"]
+[ext_resource type="Texture2D" uid="uid://cwodtchkm27oc" path="res://assets/ui/sprites/ui_panel.png" id="2_1g8jr"]
+[ext_resource type="PackedScene" uid="uid://csntl5kr5hgb6" path="res://scenes/world/world.tscn" id="2_x2yvf"]
+[ext_resource type="Theme" uid="uid://ct6emev5yl80r" path="res://resoruces/themes/main_theme.tres" id="3_m1kxf"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "information_button", "exit_button", "information_menu", "exit_information_button", "title", "menu_buttons", "quit_game_button")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m1kxf")
+game_scene = ExtResource("2_x2yvf")
+play_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/StartGameButton")
+information_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/InformationButton")
+exit_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/QuitGameButton")
+information_menu = NodePath("InfoMenu")
+exit_information_button = NodePath("InfoMenu/CloseButtonOuterTexture/CloseButtonInnerTexture/CloseButton")
+title = NodePath("TitleMenuOuterTexture")
+menu_buttons = NodePath("ButtonMenuOuterTexture")
+quit_game_button = NodePath("ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer/QuitGameButton")
+
+[node name="MainMenuBG" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_sl1te")
+expand_mode = 3
+
+[node name="TitleMenuOuterTexture" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -244.0
+offset_right = 220.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1g8jr")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="TitleMenuInnerTexture" type="Panel" parent="TitleMenuOuterTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="TitleMenuOuterTexture/TitleMenuInnerTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_m1kxf")
+theme_override_font_sizes/font_size = 48
+text = "Ninja Adventures"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonMenuOuterTexture" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -52.0
+offset_right = 112.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1g8jr")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="ButtonMenuInnerTexture" type="Panel" parent="ButtonMenuOuterTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="ButtonMenuOuterTexture/ButtonMenuInnerTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="StartGameButton" type="Button" parent="ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_m1kxf")
+text = "Start Game"
+
+[node name="InformationButton" type="Button" parent="ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_m1kxf")
+text = "Information"
+
+[node name="QuitGameButton" type="Button" parent="ButtonMenuOuterTexture/ButtonMenuInnerTexture/ButtonContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_m1kxf")
+text = "Quit Game"
+
+[node name="InfoMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTint" type="ColorRect" parent="InfoMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 0.784314)
+
+[node name="MenuOuterTexture" type="NinePatchRect" parent="InfoMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -260.0
+offset_right = 448.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_1g8jr")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="InfoMenuMargin" type="MarginContainer" parent="InfoMenu/MenuOuterTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="InfoMenuContainer" type="HBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TutorialCreditsContainer" type="VBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TutorialPanel" type="Panel" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer"]
+custom_minimum_size = Vector2(438, 214)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TutorialMargin" type="MarginContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/TutorialPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TutorialContainer" type="VBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/TutorialPanel/TutorialMargin"]
+layout_mode = 2
+
+[node name="TutorialHeader" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/TutorialPanel/TutorialMargin/TutorialContainer"]
+layout_mode = 2
+theme = ExtResource("3_m1kxf")
+text = "How to Play?"
+
+[node name="TutorialBody" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/TutorialPanel/TutorialMargin/TutorialContainer"]
+custom_minimum_size = Vector2(0, 144)
+layout_mode = 2
+theme = ExtResource("3_m1kxf")
+theme_override_font_sizes/font_size = 24
+text = "Adventure through the world using your abilities to overcome any obstacles in your path."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CreditsPanel" type="Panel" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer"]
+custom_minimum_size = Vector2(438, 214)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CreditsMargin" type="MarginContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/CreditsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CreditsContainer" type="VBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/CreditsPanel/CreditsMargin"]
+layout_mode = 2
+
+[node name="CreditsHeader" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/CreditsPanel/CreditsMargin/CreditsContainer"]
+layout_mode = 2
+theme = ExtResource("3_m1kxf")
+text = "Credits"
+
+[node name="CreditsBody" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/TutorialCreditsContainer/CreditsPanel/CreditsMargin/CreditsContainer"]
+custom_minimum_size = Vector2(0, 144)
+layout_mode = 2
+theme = ExtResource("3_m1kxf")
+theme_override_font_sizes/font_size = 24
+text = " Font: Noto Sans Math - Google
+ Assets: Ninja Adventure - Pixel-Boy"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ControlsPanel" type="Panel" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer"]
+custom_minimum_size = Vector2(438, 0)
+layout_mode = 2
+
+[node name="ControlsMargin" type="MarginContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ControlsContainer" type="VBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin"]
+layout_mode = 2
+
+[node name="ControlsHeader" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("3_m1kxf")
+text = "Controls"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ControlsBody" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(204, 368)
+layout_mode = 2
+theme = ExtResource("3_m1kxf")
+theme_override_constants/line_spacing = 30
+theme_override_font_sizes/font_size = 24
+text = "Movement
+Sword Attack
+Fireball Skill
+Heal Skill
+Calculus Quiz"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ControlsBody2" type="Label" parent="InfoMenu/MenuOuterTexture/InfoMenuMargin/InfoMenuContainer/ControlsPanel/ControlsMargin/ControlsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(204, 368)
+layout_mode = 2
+theme = ExtResource("3_m1kxf")
+theme_override_constants/line_spacing = 30
+theme_override_font_sizes/font_size = 24
+text = "WASD / ←↑→↓
+Space
+E
+Q
+T"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButtonOuterTexture" type="NinePatchRect" parent="InfoMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 216.0
+offset_right = 100.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_1g8jr")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="CloseButtonInnerTexture" type="Panel" parent="InfoMenu/CloseButtonOuterTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseButton" type="Button" parent="InfoMenu/CloseButtonOuterTexture/CloseButtonInnerTexture"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+offset_left = 4.5
+offset_top = 5.5
+offset_right = 179.5
+offset_bottom = 50.5
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_m1kxf")
+text = "Close Menu
+"

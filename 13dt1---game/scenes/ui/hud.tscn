@@ -13,6 +13,7 @@ energy_bar = NodePath("EnergyBarPadding/EnergyBar")
 quiz_menu = NodePath("QuizMenu")
 
 [node name="HeartContainerPadding" type="MarginContainer" parent="."]
+texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 10
@@ -24,6 +25,7 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 
 [node name="EnergyBarPadding" type="MarginContainer" parent="."]
+texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

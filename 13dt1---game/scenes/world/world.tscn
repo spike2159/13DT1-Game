@@ -1191,6 +1191,7 @@ sources/1 = SubResource("TileSetAtlasSource_4wyf3")
 sources/2 = SubResource("TileSetAtlasSource_gb53w")
 
 [node name="World" type="Node2D"]
+texture_filter = 1
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_6m72w")]
 player = NodePath("../Player")
