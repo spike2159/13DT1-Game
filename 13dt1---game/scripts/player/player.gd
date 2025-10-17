@@ -4,6 +4,15 @@ extends CharacterBody2D
 signal hp_changed(new_hp: int)
 signal energy_changed(new_energy: int)
 
+const HORIZONTAL_AXIS: String = "horizontal"
+const VERTICAL_AXIS: String = "vertical"
+const NO_AXIS: String = "none"
+const DIRECTION_RIGHT: String = "right"
+const DIRECTION_LEFT: String = "left"
+const DIRECTION_UP: String = "up"
+const DIRECTION_DOWN: String = "down"
+const DEATH_SCENE_PATH: String = "res://scenes/ui/death_screen.tscn"
+
 # Player properties.
 @export var speed: float = 200.0
 @export var animation: AnimationPlayer
@@ -18,24 +27,15 @@ var max_energy: int = 4
 var current_energy: int = max_energy
 var is_attacking: bool = false
 var sword_damage: int = 1
-
-const HORIZONTAL_AXIS: String = "horizontal"
-const VERTICAL_AXIS: String = "vertical"
-const NO_AXIS: String = "none"
-const DIRECTION_RIGHT: String = "right"
-const DIRECTION_LEFT: String = "left"
-const DIRECTION_UP: String = "up"
-const DIRECTION_DOWN: String = "down"
-const DEATH_SCENE_PATH: String = "res://scenes/ui/death_screen.tscn"
-
-# Skill objects used by the player.
 var fireball_skill: Skill = preload("res://scripts/skills/fireball/fireball_skill.gd").new()
 var heal_skill: Skill = preload("res://scripts/skills/heal/heal_skill.gd").new()
+
 
 # Sync HUD with current HP and energy when the scene starts. 
 func _ready() -> void:
 	emit_signal("hp_changed", current_hp)
 	emit_signal("energy_changed", current_energy)
+
 
 func _physics_process(_delta: float) -> void:
 	# Reset movement vector. 
@@ -97,6 +97,7 @@ func _physics_process(_delta: float) -> void:
 	# Moves the player and handles collisions. 
 	move_and_slide()
 
+
 # Update animation based on player input and state.
 func update_animation() -> void:
 	# Play animations only if player is alive.
@@ -111,6 +112,7 @@ func update_animation() -> void:
 	else:
 		animation.play("death")
 
+
 # Take damage and update HUD.
 func take_damage(amount: int) -> void:
 	current_hp = max(current_hp - amount, 0)
@@ -119,10 +121,12 @@ func take_damage(amount: int) -> void:
 		die()
 	emit_signal("hp_changed", current_hp)
 
+
 # Heal player and update HUD. 
 func heal(amount: int) -> void:
 	current_hp = min(current_hp + amount, max_hp)
 	emit_signal("hp_changed", current_hp)
+
 
 # Handle death sequence and safely reloads the scene. 
 func die() -> void:
@@ -133,6 +137,7 @@ func die() -> void:
 	await animation.animation_finished
 	tree.change_scene_to_file(DEATH_SCENE_PATH)
 
+
 # Use energy if enough is available. 
 func use_energy(amount: int) -> bool:
 	if current_energy >= amount:
@@ -141,10 +146,12 @@ func use_energy(amount: int) -> bool:
 		return true
 	return false
 
+
 # Restore energy and update HUD.
 func restore_energy(amount: int) -> void:
 	current_energy = min(current_energy + amount, max_energy)
 	emit_signal("energy_changed", current_energy)
+
 
 # Sets is_attacking states, plays attack animations, and waits until it finishes. 
 func attack() -> void:
@@ -152,6 +159,7 @@ func attack() -> void:
 	animation.play("attack_" + facing_direction)
 	await animation.animation_finished
 	is_attacking = false
+
 
 # Handles the sword hitting an enemy hurtbox and applies damage.
 func _on_sword_hit_box_area_entered(area: Area2D) -> void:

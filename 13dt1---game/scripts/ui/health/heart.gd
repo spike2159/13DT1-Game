@@ -1,13 +1,14 @@
 extends TextureRect
 
+const FULL_HEART_FRAME: int = 4
+
 # Sets the sprite sheet for hearts and frame size to 16x16 pixels.
 @export var heart_sprites: Texture2D
 @export var frame_size: Vector2i
 
-const FULL_HEART_FRAME: int = 4
-
 # Creates a texture region to cut a frame from the sprite sheet. 
 var atlas_texture := AtlasTexture.new()
+
 
 func _ready() -> void:
 	# Sets sprite sheet as the source, then asigns cropped texture to TextureRect.
@@ -16,6 +17,7 @@ func _ready() -> void:
 	
 	# Sets the heart sprite to the full frame using the set_heart_frame function. 
 	set_heart_frame(FULL_HEART_FRAME)
+
 
 # Updates heart frame by cropping the spritesheet and updating the TextureRect texture.
 func set_heart_frame(frame: int):

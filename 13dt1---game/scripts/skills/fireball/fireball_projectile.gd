@@ -9,6 +9,7 @@ var damage: int
 var duration: float
 var direction := Vector2.ZERO
 
+
 # Plays animation and destroys fireball after a duration.
 func _ready() -> void:
 	animation.play("fireball_spin")
@@ -16,9 +17,11 @@ func _ready() -> void:
 	await get_tree().create_timer(duration).timeout
 	queue_free()
 
+
 # Moves in set direction at the specified speed every frame.
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
+
 
 # Damages enemy on collision, then destroys self.
 func _on_area_entered(area: Area2D) -> void:
@@ -26,6 +29,7 @@ func _on_area_entered(area: Area2D) -> void:
 		var enemy: Node2D = area.get_parent()
 		enemy.take_damage(damage)
 		queue_free()
+
 
 # Destroys self on hitting walls.
 func _on_body_entered(body: Node2D) -> void:

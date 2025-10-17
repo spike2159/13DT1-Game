@@ -14,12 +14,11 @@ var quiz_data: Array
 var current_question: Dictionary
 var player: CharacterBody2D
 var energy_restored: int = 1
-
-# Feedback answers for correct and incorrect answers.
 var feedback_text: Dictionary[String, String] = {
 	"correct": "Correct Answer!",
 	"incorrect": "Incorrect Answer!\nCorrect Answer: %s",
 }
+
 
 # On load, connects the buttons being pressed to their functions.
 func _ready() -> void:
@@ -28,6 +27,7 @@ func _ready() -> void:
 	
 	# Randomises question order.
 	randomize()
+
 
 # Loads a quiz from a JSON file, stores the player reference, and shows the first question.
 func load_quiz(quiz_path: String, player_reference: CharacterBody2D) -> void:
@@ -52,6 +52,7 @@ func load_quiz(quiz_path: String, player_reference: CharacterBody2D) -> void:
 	
 	# SHow the first random question from the loaded quiz.
 	show_next_question()
+
 
 func show_next_question() -> void:
 	# Select a random question from the loaded quiz data.
@@ -82,6 +83,7 @@ func show_next_question() -> void:
 	answer_container.show()
 	feedback_container.hide()
 
+
 func _on_answer_pressed(selected_answer: String) -> void:
 	# Hide the answer buttons and show the feedback buttons.
 	answer_container.hide()
@@ -108,6 +110,7 @@ func show_feedback(is_correct: bool, correct_answer: String) -> void:
 	else:
 		# Show the correct asnwer if the selected asnwer was wrong.
 		question_label.text = feedback_text["incorrect"] % correct_answer
+
 
 func _on_exit_quiz() -> void:
 	# Hide the quiz panel and return to the select quiz menu if available.

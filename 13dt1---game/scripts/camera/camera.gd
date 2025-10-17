@@ -1,10 +1,11 @@
 extends Camera2D
 
+const DEFAULT_SMOOTHING_SPEED: int = 5
+
 # Variables for the camera area and the player node.
 @export var area_size: Vector2
 @export var player: CharacterBody2D
 
-const DEFAULT_SMOOTHING_SPEED: int = 5
 
 func _ready() -> void:
 	# Positions camera then awaits a frame to prevent smoothing the starting position.
@@ -16,12 +17,14 @@ func _ready() -> void:
 	position_smoothing_speed = DEFAULT_SMOOTHING_SPEED
 	
 	# Zoom camera to fit exactly one area in the viewport.
-	var viewport_size = get_viewport_rect().size
+	var viewport_size : Vector2 = get_viewport_rect().size
 	zoom = Vector2(viewport_size.x / area_size.x, viewport_size.y / area_size.y)
+
 
 # Updates camera position each physics frame. 
 func _physics_process(_delta: float) -> void:
 	update_screen_position()
+
 
 # Centres camera on the room the player is currently in.
 func update_screen_position() -> void:

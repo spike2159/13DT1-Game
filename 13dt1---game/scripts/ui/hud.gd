@@ -16,6 +16,7 @@ extends CanvasLayer
 # Variable for tracking UI states.
 var is_paused: bool = false
 
+
 # On load, connect the player signals to their respective functions.
 func _ready() -> void:
 	player.connect("hp_changed", self._on_hp_changed)
@@ -31,13 +32,16 @@ func _ready() -> void:
 	exit_information_button.pressed.connect(_on_exit_information_button_pressed)
 	exit_game_button.pressed.connect(_on_quit_game_button_pressed)
 
+
 # Called when hp_changed signal is emitted, then updates heart container HP sprites.
 func _on_hp_changed(new_hp: int) -> void:
 	heart_container.set_hp(new_hp)
 
+
 # Called when energy_changed signal is emitted, then updates the energy bar. 
 func _on_energy_changed(new_energy: int) -> void:
 	energy_bar.set_energy(new_energy)
+
 
 # Runs each frame, toggles the quiz menu and pause menu if the key is pressed.
 func _process(_delta: float) -> void:
@@ -50,7 +54,7 @@ func _process(_delta: float) -> void:
 		toggle_pause_menu()
 
 
-# Toggles the game's pause state and updates menu visibility.  
+# Toggles the game's pause state and updates menu visibility. 
 func toggle_pause_menu() -> void:
 	# If paused, hide gameplay menus and resume the game.
 	if is_paused:

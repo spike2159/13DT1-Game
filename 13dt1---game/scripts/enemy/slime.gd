@@ -23,6 +23,7 @@ var target_player: CharacterBody2D
 var attacking: bool = false
 var can_attack: bool = true
 
+
 # Sets current_hp to max_hp when the scene starts.
 func _ready() -> void:
 	current_hp = max_hp

@@ -5,9 +5,11 @@ extends HBoxContainer
 @export var current_hp: int = max_hp
 @export var hp_per_heart: int = 4
 
+
 # Initialise heart UI to match current HP on scene load. 
 func _ready() -> void:
 	update_hearts()
+
 
 # Update heart sprites based on current HP and HP per heart. 
 func update_hearts() -> void:
@@ -16,6 +18,7 @@ func update_hearts() -> void:
 		var heart: TextureRect = get_child(i)
 		var heart_hp: int = clamp(current_hp - (i * hp_per_heart), 0, hp_per_heart)
 		heart.set_heart_frame(heart_hp)
+
 
 # When HP changes, clamp the new value to a valid range, then update hearts.
 func set_hp(value: int) -> void:
