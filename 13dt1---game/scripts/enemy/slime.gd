@@ -16,11 +16,12 @@ const DIRECTION_DOWN: String = "down"
 
 # Variables set within functions.
 var player: CharacterBody2D
-var chasing: bool
+var chasing: bool = false
 var facing_direction: String
 var current_hp: int
 var target_player: CharacterBody2D
-var attacking: bool
+var attacking: bool = false
+var can_attack: bool = true
 
 # Sets current_hp to max_hp when the scene starts.
 func _ready() -> void:
@@ -95,8 +96,8 @@ func die() -> void:
 
 # Handles the slime attacking the player when they enter its attack range.
 func _on_slime_attack_range_area_entered(area: Area2D) -> void:
-	# If the collided area is the player's hurtbox start attacking.
-	if area.is_in_group("player_hurtbox"):
+	# If the collided area is the player's hurtbox and the enemy can attakc start attacking.
+	if area.is_in_group("player_hurtbox") and can_attack:
 		target_player = area.get_parent()
 		if not attacking:
 			attacking = true
@@ -117,7 +118,14 @@ func attack() -> void:
 	if not attacking or target_player == null:
 		return
 	
-	# Damages the player, waits for the attack interval, then run the attack() function again.
+	# Sets can_attack to false.
+	can_attack = false
+	
+	# Damages the player, then waits for the attack interval.
 	target_player.take_damage(attack_damage)
 	await get_tree().create_timer(attack_interval).timeout
-	attack()
+	
+	# Sets can_attack to true and attacks again if still attacking and player exists. 
+	can_attack = true
+	if attacking and target_player:
+		attack()
